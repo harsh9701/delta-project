@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-8 offset-2 mt-3">
             <h3>Edit Listing</h3>
-            <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+            <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" enctype="multipart/form-data" novalidate class="needs-validation">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" name="listing[title]" id="" value="<%= listing.title %>" class="form-control"
@@ -16,10 +16,20 @@
                         required><%= listing.description %></textarea>
                     <div class="invalid-feedback">Please enter short description</div>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="url" class="form-label">Image URL</label>
                     <input type="text" name="listing[image][url]" id="url" value="<%= listing.image.url %>"
                         class="form-control">
+                </div> -->
+                <% if(!(originalImageUrl.includes("unsplash"))) { %>
+                Listing Original Name<br>
+                <div class="mb-3">
+                    <img src="<%= originalImageUrl %>" alt="Listing Image">
+                </div>
+                <% } %>
+                <div class="mb-3">
+                    <label for="url" class="form-label">Upload New Image</label>
+                    <input type="file" name="listing[image][url]" id="url" class="form-control">
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-4">
