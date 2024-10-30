@@ -27,9 +27,9 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-// const dbUrl = process.env.MONGO_URL;
-const dbUrl = MONGO_URL;
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl = process.env.MONGO_URL;
+// const dbUrl = MONGO_URL;
 
 main().then(() => {
     console.log("Connected to DB");
