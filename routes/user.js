@@ -3,8 +3,11 @@ const router = express.Router({ mergeParams: true });
 const wrapAysnc = require("../utils/wrapAsync.js");
 const passport = require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
+const listingController = require("../controllers/listing.js");
 
 const userController = require("../controllers/user.js");
+
+router.route("/").get(wrapAysnc(listingController.index));  //Index Route
 
 router.route("/signup")
     .get(userController.renderSignupForm)
